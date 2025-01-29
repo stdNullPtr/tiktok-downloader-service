@@ -7,6 +7,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -25,6 +26,10 @@ public class VideoDownloadService {
     private final RestTemplate restTemplate;
 
     public DownloadData download(final String tiktokVideoUrl) {
+        if (!StringUtils.hasText(tiktokVideoUrl)) {
+            throw new IllegalArgumentException("Cannot work with an empty or blank URL");
+        }
+
         final TiktokResponse tiktokResponse = getTiktokVideoPageData(tiktokVideoUrl);
         final VideoData videoData = extractVideoData(tiktokResponse);
         final byte[] video = downloadVideo(videoData, tiktokResponse);
