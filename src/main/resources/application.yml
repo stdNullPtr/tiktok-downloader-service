@@ -1,1 +1,17 @@
-spring.application.name=tiktok-downloader-service
+spring:
+  application:
+    name: TikTok Downloader Service
+  threads:
+    virtual:
+      enabled: true
+
+service:
+  api:
+    allowed-origins: "http://localhost:5173,http://192.168.68.57:5173/"
+    context-path: /tiktok-downloader
+    version: v1
+    api-path: api
+    url: ${service.api.context-path}/${service.api.api-path}/${service.api.version}
+
+logging:
+  include-application-name: false
