@@ -7,7 +7,7 @@ spring:
 
 service:
   api:
-    allowed-origins: "http://localhost:5173,http://192.168.68.57:5173/"
+    allowed-origins: "http://localhost:5173,http://192.168.68.57:5173/,https://stdnullptr.github.io/"
     context-path: /tiktok-downloader
     version: v1
     api-path: api
